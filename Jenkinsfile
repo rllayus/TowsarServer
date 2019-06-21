@@ -28,20 +28,17 @@ pipeline {
         stage('Analysis') {
             parallel {
                 stage('Junit') {
-                    dir(env.PATH_IN_WS) {
-                        steps {
-                            sh 'mvn test'
-                        }
+
+                    steps {
+                        sh 'mvn test'
                     }
 
                 }
 
                 stage('SonarQu') {
-                    dir(env.PATH_IN_WS) {
-                        steps {
-                            withSonarQubeEnv('SonarLocal') {
-                                sh 'mvn clean package sonar:sonar'
-                            }
+                    steps {
+                        withSonarQubeEnv('SonarLocal') {
+                            sh 'mvn clean package sonar:sonar'
                         }
                     }
 
@@ -65,10 +62,8 @@ pipeline {
 
 
         stage('Deploy') {
-            dir(env.PATH_IN_WS) {
-                steps {
-                    sh 'mvn jboss-as:deploy'
-                }
+            steps {
+                sh 'mvn jboss-as:deploy'
             }
         }
 
