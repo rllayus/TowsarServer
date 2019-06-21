@@ -13,6 +13,11 @@ pipeline {
             }
         }
 
+        stage("Config") {
+            steps {
+                sh 'cd source/towsar/'
+            }
+        }
 
         stage("Building") {
             steps {
