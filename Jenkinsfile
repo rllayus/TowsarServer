@@ -23,7 +23,6 @@ pipeline {
 
         stage("Building") {
             steps {
-                sh 'cd source/towsar/'
                 sh 'mvn clean compile'
             }
         }
