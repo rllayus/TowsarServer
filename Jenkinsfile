@@ -22,7 +22,7 @@ pipeline {
         }
 
         stage("Building") {
-            dir(PATH_IN_WS) {
+            dir("${WORKSPACE}/source/towsar/") {
                 steps {
                     sh 'mvn clean compile'
                 }
