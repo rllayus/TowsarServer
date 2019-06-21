@@ -19,11 +19,9 @@ pipeline {
 
         stage("Building") {
             steps {
-
-                dir("source/towsar/") {
+                dir(PATH_IN_WS) {
                     sh 'mvn clean compile'
                 }
-                sh 'mvn clean compile'
             }
         }
 
