@@ -25,7 +25,9 @@ pipeline {
             dir("source/towsar/") {
                 sh 'mvn clean compile'
             }
-
+            steps {
+                sh 'mvn clean compile'
+            }
         }
 
         stage('Analysis') {
