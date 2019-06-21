@@ -28,17 +28,20 @@ pipeline {
         stage('Analysis') {
             parallel {
                 stage('Junit') {
-
-                    steps {
-                        sh 'mvn test'
+                    dir(env.PATH_IN_WS) {
+                        steps {
+                            sh 'mvn test'
+                        }
                     }
 
                 }
 
                 stage('SonarQu') {
-                    steps {
-                        withSonarQubeEnv('SonarLocal') {
-                            sh 'mvn clean package sonar:sonar'
+                    dir(env.PATH_IN_WS) {
+                        steps {
+                            withSonarQubeEnv('SonarLocal') {
+                                sh 'mvn clean package sonar:sonar'
+                            }
                         }
                     }
 
