@@ -15,7 +15,9 @@ pipeline {
 
         stage("Config") {
             steps {
-                sh 'cd source/towsar/'
+                dir('source/towsar/') {
+                    sh 'pwd'
+                }
             }
         }
 
