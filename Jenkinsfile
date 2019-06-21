@@ -19,7 +19,7 @@ pipeline {
 
         stage("Building") {
             steps {
-                dir(PATH_IN_WS) {
+                dir(env.PATH_IN_WS) {
                     sh 'mvn clean compile'
                 }
             }
