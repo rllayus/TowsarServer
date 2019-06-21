@@ -22,11 +22,10 @@ pipeline {
         }
 
         stage("Building") {
-            dir("${WORKSPACE}/source/towsar/") {
-                steps {
-                    sh 'mvn clean compile'
-                }
+            dir("source/towsar/") {
+                sh 'mvn clean compile'
             }
+
         }
 
         stage('Analysis') {
