@@ -19,32 +19,29 @@ pipeline {
 
         stage("Building") {
             steps {
-                dir(env.PATH_IN_WS)  {
+                dir(env.PATH_IN_WS) {
                     sh 'mvn clean compile'
                 }
             }
         }
 
         stage('Analysis') {
-            parallel {
-                stage('Junit') {
-                    dir(env.PATH_IN_WS) {
+            dir(env.PATH_IN_WS) {
+                parallel {
+                    stage('Junit') {
                         steps {
                             sh 'mvn test'
                         }
                     }
 
-                }
-
-                stage('SonarQu') {
-                    dir(env.PATH_IN_WS) {
+                    stage('SonarQu') {
                         steps {
                             withSonarQubeEnv('SonarLocal') {
                                 sh 'mvn clean package sonar:sonar'
                             }
                         }
-                    }
 
+                    }
                 }
             }
 
