@@ -19,13 +19,11 @@ pipeline {
                     sh 'pwd'
                 }
             }
-        }
-
-        stage("Building") {
             steps {
                 sh 'mvn clean compile'
             }
         }
+
 
         stage('Analysis') {
             parallel {
