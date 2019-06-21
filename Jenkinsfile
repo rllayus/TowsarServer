@@ -23,10 +23,7 @@ pipeline {
                 dir("source/towsar/") {
                     sh 'mvn clean compile'
                 }
-
-                step {
-                    sh 'mvn clean compile'
-                }
+                sh 'mvn clean compile'
             }
         }
 
