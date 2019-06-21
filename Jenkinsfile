@@ -4,10 +4,6 @@ pipeline {
     agent any
 
     environment {
-        FOO = "BAR"
-        // Environment variables can now reference other environment variables!
-        BARCAMP = "${FOO}CAMP"
-        // They can also reference the workspace path!
         PATH_IN_WS = "${WORKSPACE}/source/towsar/"
     }
     tools {
@@ -23,11 +19,11 @@ pipeline {
 
         stage("Building") {
             steps {
-                step{
-                    dir("source/towsar/") {
-                        sh 'mvn clean compile'
-                    }
+
+                dir("source/towsar/") {
+                    sh 'mvn clean compile'
                 }
+
                 step {
                     sh 'mvn clean compile'
                 }
