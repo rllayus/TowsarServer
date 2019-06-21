@@ -1,7 +1,15 @@
 #!groovy
 pipeline {
 
-    agent any
+    agent {
+        node {
+            label "My Node"
+            // This is equivalent to the "ws(...)" step - sets the workspace on the
+            // agent to a hard-coded path. If it's not an absolute path, it'll be
+            // relative to the agent's workspace root.
+            customWorkspace "source/towsar/"
+        }
+    }
     tools {
         maven 'MVN3'
     }
@@ -13,17 +21,11 @@ pipeline {
             }
         }
 
-        stage("Config") {
-            steps {
-                dir('source/towsar/') {
-                    sh 'pwd'
-                }
-            }
+        stage("Building") {
             steps {
                 sh 'mvn clean compile'
             }
         }
-
 
         stage('Analysis') {
             parallel {
